@@ -1,7 +1,7 @@
 {
-  "name": "citizenatlas_api_implementation",
+  "name": "getDCAddress2",
   "version": "1.0.0",
-  "description": "citizenatlas_api",
+  "description": "getDCAddress2",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
