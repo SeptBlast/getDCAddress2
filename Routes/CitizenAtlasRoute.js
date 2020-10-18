@@ -24,7 +24,7 @@ router.get('/locationverifier/initialetters/:initals', async(req, res) => {
         if (obj.returnDataset.Table1!=null)
         res.status(200).send(obj.returnDataset.Table1)
         else
-        res.status(200).send(null)
+        res.status(200).send("No matching records found")
     });
 
 })
