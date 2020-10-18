@@ -41,7 +41,6 @@ router.get('/locationverifier/initialetters/:initals', async(req, res) => {
         log.debug(err.message())
         res.status(406).send(err)
     }
-
 })
 
 module.exports = router
