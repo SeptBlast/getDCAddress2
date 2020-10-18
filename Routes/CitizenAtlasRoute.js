@@ -21,7 +21,7 @@ router.get('/locationverifier/initialetters/:initals', async(req, res) => {
         const externalUriResp = response.body
         const obj = JSON.parse(externalUriResp)
 
-        if (obj.returnDataset.Table1)
+        if (obj.returnDataset.Table1!=null)
         res.status(200).send(obj.returnDataset.Table1)
         else
         res.status(200).send(null)
