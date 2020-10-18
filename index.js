@@ -2,9 +2,10 @@ const express = require('express')
 const dotenv = require('dotenv')
 const homeRoute = require('./Routes/home')
 const citizenAtlasRoute = require('./Routes/CitizenAtlasRoute')
-const PORT = process.env.SERVICE_PORT || 80
 
 dotenv.config()
+
+const PORT = process.env.SERVICE_PORT || 80
 
 const app = express()
 
