@@ -1,8 +1,21 @@
-const router = require('express').Router()
-var log = require('log4js').getLogger("home");
+import express from 'express'
 
-router.get('/', async(req, res) => {
-    log.debug("Health Check Successfull");
+const router = express.Router()
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     description: healthcheck
+ *     responses:
+ *       '200':
+ *         description: Successful
+ *         content: application/json
+ *       '406':
+ *         description: Passed Initals is not correct
+ *         content: application/json
+*/
+router.get('/', async function(req, res) {
     await res.json({
         status: {
             errorCode: '0',
@@ -11,4 +24,4 @@ router.get('/', async(req, res) => {
     })
 })
 
-module.exports = router
+export default router

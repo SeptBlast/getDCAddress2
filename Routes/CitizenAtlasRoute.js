@@ -1,14 +1,34 @@
-const router = require('express').Router()
-const { response } = require('express')
-const log = require('log4js').getLogger("users");
-const request = require('request')
+import express, { response } from 'express';
+import request from 'request';
 
+const router = express.Router()
+
+/**
+ * @swagger
+ * /citizenAtlas/locationverifier/initialetters/{initialetters}:
+ *   get:
+ *     tags:
+ *       - getDCCitizenList
+ *     description: get the list of all DCAddresses
+ *     parameters:
+ *       - in: path
+ *         name: initialetters
+ *         required: true
+ *         type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *         description: Successful
+ *         content: application/json
+ *       '406':
+ *         description: Passed Initals is not correct
+*/
 router.get('/locationverifier/initialetters/:initals', async(req, res) => {
     var initailsLetters = req.params.initals
     try {
         if (!initailsLetters) {
-            log.debug('initailsLetters not found')
-            res.status(406).send(`Passed Inital letters ${initailsLetters}`)
+            res.status(406).json(`Passed Inital letters ${initailsLetters}`)
         }
         res.setHeader('Content-Type', 'application/json')
 
@@ -22,25 +42,21 @@ router.get('/locationverifier/initialetters/:initals', async(req, res) => {
 
         request(requestOptions, function (error, response) {
             if (error) {
-                log.debug(error.message())
-                res.status(406).send(error)
+                res.status(406).json(error)
             } else {
                 // const externalUriResp = JSON.stringify(response.body)
                 const externalUriResp = response.body
                 const obj = JSON.parse(externalUriResp)
                 if (obj.returnDataset != null) {
-                    log.debug('Address record list pulled')
-                    res.status(200).send(obj.returnDataset.Table1) 
+                    res.status(200).json(obj.returnDataset.Table1) 
                 } else {
-                    log.debug('Address record list can not be pulled')
-                    res.status(406).send(error)
+                    res.status(406).json(error)
                 }
             }
         });
     } catch (err) {
-        log.debug(err.message())
-        res.status(406).send(err)
+        res.status(406).json(err)
     }
 })
 
-module.exports = router
+export default router

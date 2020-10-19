@@ -1,16 +1,18 @@
-const express = require('express')
-const dotenv = require('dotenv')
+import express, { json } from 'express'
+import { config } from 'dotenv'
+import cors from 'cors';
+import homeRoute from './Routes/home.js'
+import citizenAtlasRoute from './Routes/CitizenAtlasRoute.js'
+import swaggerDoc from './config/swaggerDocs.js'
 
-const homeRoute = require('./Routes/home')
-const citizenAtlasRoute = require('./Routes/CitizenAtlasRoute')
-
-dotenv.config()
-
+config()
+const app = express()
 const PORT = process.env.SERVICE_PORT || 80
 
-const app = express()
+app.use(json())
+app.use(cors())
 
-app.use(express.json())
+swaggerDoc(app)
 
 app.use('/', homeRoute)
 app.use('/citizenAtlas', citizenAtlasRoute)
