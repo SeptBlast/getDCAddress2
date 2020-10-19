@@ -14,7 +14,9 @@ const router = express.Router()
  *       - in: path
  *         name: initialetters
  *         required: true
- *         type: string
+ *         type: integer
+ *         format: int64
+ *         minimum: 4
  *     produces:
  *       - application/json
  *     responses:
