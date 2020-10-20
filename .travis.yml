@@ -1,0 +1,16 @@
+
+os: linux
+dist: trusty
+language: node_js
+node_js:
+    - 14
+jobs:
+    fast_finish: true
+cache:
+    npm: true
+    yarn: false
+
+scripts:
+    - npm install npm@latest -g
+    - npm ci
+    - npm run build --if-present
