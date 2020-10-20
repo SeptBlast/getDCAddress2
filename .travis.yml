@@ -10,7 +10,7 @@ cache:
     npm: true
     yarn: false
 
-scripts:
+script:
     - npm install npm@latest -g
     - npm ci
     - npm run build --if-present
