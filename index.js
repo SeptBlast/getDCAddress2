@@ -7,7 +7,7 @@ import swaggerDoc from './config/swaggerDocs.js'
 
 config()
 const app = express()
-const PORT = process.env.SERVICE_PORT || 80
+const PORT = process.env.SERVICE_PORT || process.env.PORT || 80
 
 app.use(json())
 app.use(cors())
